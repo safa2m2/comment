@@ -55,10 +55,60 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
 			<?php require_once "colr.php"; ?>
 
 			<div class="content-wrapper">
+            
+            
+            <?php
+                if (isset($_POST['submit']) )
+                {
+                    $refer = '';
+                    foreach ($_POST['refer'] as $s_Option)
+                    $refer .= $s_Option ;
+                    
+                    
+                    if(get_safe_post($mysqlicheck,"submit") == "save" && get_safe_post($mysqlicheck,"subject") != "" && $refer != "" && get_safe_post($mysqlicheck,"comme") != "" )
+                    {
+                          $subject = get_safe_post($mysqlicheck,"subject");
+                          $comme = get_safe_post($mysqlicheck,"comme");
+                              
+						
+                        $sql = 'INSERT INTO `process`(`subject`, `refer`, `descr`, `or_data`, `pr_time`) VALUES ("'.$subject.'","'.$refer.'","'.$comme.'","'.$date.'","'.$time.'")';
+                                       
+                        $result = $mysqlicheck->query($sql);
+									
+                        if (!$result)
+                        {
+                            echo'
+					               <div class="alert alert-danger alert-styled-left alert-bordered">
+									<button data-dismiss="alert" class="close" type="button"><span>×</span><span class="sr-only">Close</span></button>
+									ارسال اطلاعات با <span class="text-semibold">خطا</span> رو برو گردید.
+								</div>';
+                         }
+                        else
+                        {
+							echo'<div class="alert alert-success alert-styled-left alert-arrow-left alert-bordered">
+								<button data-dismiss="alert" class="close" type="button"><span>×</span><span class="sr-only">Close</span></button>
+								پروسه جدید با موفقیت ایجاد گردید .
+                                </div>';
+						}
 
+					
+                }
+                else
+                {
+				    echo'
+                       <div class="alert alert-danger alert-styled-left alert-bordered">
+                        <button data-dismiss="alert" class="close" type="button"><span>×</span><span class="sr-only">Close</span></button>
+                        تمامی فیلدها باید پر باشد
+                        </div>';
+			     }
+            }
+                            ?>
+               
+            
+            
+            
 				<div class="content">
-                   <div class="row">
-                	<div class="col-md-6">
+                   
                         <form method="post" class="form-horizontal">
                             <div class="panel panel-flat">
                                 <div class="panel-heading">
@@ -70,19 +120,24 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
                                     </div>
                                 </div>
                                 <hr>
+                                
                                 <div class="panel-body">
+                                   <div class="row">
+                	                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">موضوع :</label>
                                         <div class="col-lg-9">
-                                            <input type="text" name="name" class="form-control" placeholder="عنوان">
+                                            <input type="text" name="subject" class="form-control" placeholder="عنوان">
                                         </div>
                                     </div>
-                                    <hr>
+                                </div>
+                                   <div class="col-md-6">
+                                    
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">ارجاع به :</label>
                                         <div class="col-lg-9">
                                            <div class="form-group">
-                                                <select multiple="multiple" data-placeholder="انتخاب اشخاص..." class="select">
+                                                <select multiple="multiple"  name="refer[]" data-placeholder="انتخاب اشخاص..." class="select">
                                                  
 											    <option></option>   
                                                         <?php
@@ -100,34 +155,25 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
                                                 
                                         </div>
                                     </div>
-                                    <hr>
+                        </div></div><hr>
+                                   <div class="row">
+                	                <div class="col-md-9">
+                                    
                                     <div class="form-group">
-                                        <label class="col-lg-3 control-label">توضیحات :</label>
-                                        <div class="col-lg-9">
-                                            <textarea rows="5" cols="5" class="form-control" placeholder="درج توضیحات شما .."></textarea>
+                                        <label class="col-lg-2 control-label">توضیحات :</label>
+                                        <div class="col-lg-10">
+                                            <textarea rows="2" cols="5" name="comme" class="form-control" placeholder="درج توضیحات شما .."></textarea>
                                         </div>
-                                    </div>
+                                        </div></div>
+                                    <div class="col-md-3" >
                                     <div class="text-right">
                                         <button type="submit" name="submit" value="save" class="btn btn-primary">ایجاد و ذخیره <i class="icon-arrow-left13 position-right"></i></button>
                                     </div>
+                                       </div></div>
                                 </div>
                             </div>
-                        </form>
-					</div>
-                    <div class="col-md-6">
-                        <div class="panel panel-flat">
-                            <div class="panel-heading">
-                                <h6 class="panel-title">نمونه گروه اصلی و فرعی برای درک بیشتر</h6>
-                            <a class="heading-elements-toggle"><i class="icon-menu"></i></a></div>
-        
-                            <div class="panel-body">
-                                <a class="display-block content-group" href="#">
-                                    <img alt="" class="img-responsive content-group" src="assets/images/placeholder.jpg">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                     </form>
+				
               </div>
 
 			</div>

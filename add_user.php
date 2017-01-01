@@ -42,7 +42,7 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
 	<script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
     <script type="text/javascript" src="assets/js/pages/form_layouts.js"></script>
 	<!-- /theme JS files -->
-	<script type="text/javascript" src="assets/js/pages/datatables_basic_unit.js"></script>
+	<script type="text/javascript" src="assets/js/pages/datatables_extension_colvis.js"></script>
 	<!-- /theme JS files -->
 	
 	
@@ -81,7 +81,7 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
                                     $meli = get_safe_post($mysqlicheck,"meli");
                                     $mobi = get_safe_post($mysqlicheck,"mobi");
                                     $gender = get_safe_post($mysqlicheck,"gender");
-									$datenow = mkdate("Y/m/d",date('Y-m-d'),'fa');
+									
                                     $pass = sha1($meli);
                                         
 									$result_u = mysqli_query($mysqlicheck,"SELECT * FROM user WHERE `user_code` ='".$meli."'");
@@ -96,7 +96,7 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
 										کد ملی <span class="text-semibold">'.$meli.'</span> قبلا ایجاد شده است .									</div>';
 									}
 									else {
-                                    $sql = 'INSERT INTO `user`( `user_code`, `user_job`, `user_mobile`, `user_name`, `user_pass`, `user_family`, `user_g`, `user_data`, `user_time`,`user_tittle`) VALUES ("'.$meli.'" , "'.$job.'", "'.$mobi.'", "'.$name.'", "'.$pass.'", "'.$family.'", "'.$gender.'", "'.$datenow.'", "'.date("H:i:s").'", "user" )';
+                                    $sql = 'INSERT INTO `user`( `user_code`, `user_job`, `user_mobile`, `user_name`, `user_pass`, `user_family`, `user_g`, `user_data`, `user_time`,`user_tittle`) VALUES ("'.$meli.'" , "'.$job.'", "'.$mobi.'", "'.$name.'", "'.$pass.'", "'.$family.'", "'.$gender.'", "'.$date.'", "'.$time.'", "user" )';
                                        
                                     $result = $mysqlicheck->query($sql);
 									
@@ -217,28 +217,33 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
                         <div class="col-md-6">
                         <!-- Single row selection -->
                         
-                        
+					<!-- Basic example -->
 					<div class="panel panel-flat">
 						<div class="panel-heading">
-							<h5 class="panel-title">کاربران ایجاد شده</h5>
+							<h5 class="panel-title">Basic example</h5>
 							<div class="heading-elements">
 								<ul class="icons-list">
 			                		<li><a data-action="collapse"></a></li>
 			                		<li><a data-action="reload"></a></li>
+			                		<li><a data-action="close"></a></li>
 			                	</ul>
 		                	</div>
 						</div>
-                        <table class="table datatable-basic">
+
+						<div class="panel-body">
+							The column visibility plug-in for Buttons provides a set of buttons that can be used to easily give the end user the ability to set the visibility of columns. The primary button type for column visibility controls is the <code>colvis</code> type which adds a collection (<code>collection</code>) of buttons, one for each of the columns in the table, with the end user having the ability to toggle these columns.
+						</div>
+
+						<table class="table datatable-colvis-basic">
 							<thead>
 								<tr>
 									<th>نام خانوادگی</th>
 					                <th>سمت</th>
-					                <th>وضعیت</th>
-                                    <th>تاریخ ایجاد</th>
+					                <th>تاریخ ایجاد</th>
 								</tr>
 							</thead>
 							<tbody>
-                                 <?php
+							    <?php
 									$table2 = mysqli_query($mysqlicheck,"SELECT * FROM user");
 									while($rows2=mysqli_fetch_assoc($table2))
 									{
@@ -252,15 +257,14 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
                                             <td>
                                               '.$user_job.'
                                             </td>
-											<td></td>
-                                            <td>'.$user_data.'</td>
+											<td>'.$user_data.'</td>
 											</tr>';
 									}
 									?>
 							</tbody>
 						</table>
 					</div>
-					<!-- /single row selection -->
+					
                         </div>
                         
                         

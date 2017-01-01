@@ -1,4 +1,8 @@
-	<div class="navbar navbar-inverse navbar-fixed-top">
+<?php
+$date = mkdate("Y/m/d",date('Y-m-d'),'fa');
+$time = date("H:i:s");
+?>
+		<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="index.php"><img src="assets/images/logo_light.png" alt=""></a>
 
