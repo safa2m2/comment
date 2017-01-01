@@ -1,0 +1,10 @@
+body {
+  font-family: "web_Yekan", "tahoma";
+  color: #788288;
+  }
+.borderB1{
+    margin-right: -5px;
+}
+.dt-button-collection.dropdown-menu {
+    z-index: 1050;
+}
