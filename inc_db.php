@@ -2,6 +2,7 @@
 error_reporting(0);
 session_start(); 
 $_SESSION['login']="user";
+$_SESSION['user_id']="11";
 include("inc_ShamsiDate.php");
 include("inc_con.php");
 
