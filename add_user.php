@@ -48,7 +48,7 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
       <?php
       if (isset($_POST['submit']) )
 	  {
-         if(get_safe_post($mysqlicheck,"submit") == "save" && get_safe_post($mysqlicheck,"name") != "" && get_safe_post($mysqlicheck,"family") != "" && get_safe_post($mysqlicheck,"job") != "" && get_safe_post($mysqlicheck,"meli") != "" && get_safe_post($mysqlicheck,"mobi") != "" && get_safe_post($mysqlicheck,"gender") != "" )
+         if(get_safe_post($mysqlicheck,"submit") == "save" && get_safe_post($mysqlicheck,"name") != "" && get_safe_post($mysqlicheck,"family") != "" && get_safe_post($mysqlicheck,"job") != "" && get_safe_post($mysqlicheck,"meli") != "" && get_safe_post($mysqlicheck,"mobi") != "" && get_safe_post($mysqlicheck,"gender") != "" && get_safe_post($mysqlicheck,"tittle") != "")
           {
 			$name = get_safe_post($mysqlicheck,"name");
 			$family = get_safe_post($mysqlicheck,"family");
@@ -56,6 +56,7 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
 			$meli = get_safe_post($mysqlicheck,"meli");
 			$mobi = get_safe_post($mysqlicheck,"mobi");
 			$gender = get_safe_post($mysqlicheck,"gender");
+			$tittle = get_safe_post($mysqlicheck,"tittle");
 			$pass = sha1($meli);
 
 			$result_u = mysqli_query($mysqlicheck,"SELECT * FROM user WHERE `user_code` ='".$meli."'");
@@ -71,7 +72,7 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
 			}
 			else
 			{
-                $sql = 'INSERT INTO `user`( `user_code`, `user_job`, `user_mobile`, `user_name`, `user_pass`, `user_family`, `user_g`, `user_data`, `user_time`,`user_tittle`) VALUES ("'.$meli.'" , "'.$job.'", "'.$mobi.'", "'.$name.'", "'.$pass.'", "'.$family.'", "'.$gender.'", "'.$date.'", "'.$time.'", "user" )';
+                $sql = 'INSERT INTO `user`( `user_code`, `user_job`, `user_mobile`, `user_name`, `user_pass`, `user_family`, `user_g`, `user_data`, `user_time`,`user_tittle`) VALUES ("'.$meli.'" , "'.$job.'", "'.$mobi.'", "'.$name.'", "'.$pass.'", "'.$family.'", "'.$gender.'", "'.$date.'", "'.$time.'", "'.$tittle.'" )';
 
                 $result = $mysqlicheck->query($sql);
 
@@ -135,6 +136,17 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
                     <label class="col-lg-3 control-label"> سمت: </label>
                     <div class="col-lg-9">
                       <input type="text" name="job" value="" class="form-control" placeholder="شغل سازمانی">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">دسترسی:</label>
+                    <div class="col-lg-9">
+                      <label class="radio-inline">
+                        <input type="radio" value="admin" class="styled" name="tittle">
+                        ادمین </label>
+                      <label class="radio-inline">
+                        <input type="radio" value="user" class="styled" name="tittle">
+                        کاربر </label>
                     </div>
                   </div>
                   <div class="form-group">

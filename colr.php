@@ -4,8 +4,8 @@
     <div class="sidebar-user">
       <div class="category-content">
         <div class="media"> <a href="#" class="media-left"><img src="assets/images/image.png" class="img-circle img-sm" alt=""></a>
-          <div class="media-body"> <span class="media-heading text-semibold">ادمین یک</span>
-            <div class="text-size-mini text-muted"> <i class="icon-pin text-size-small"></i> &nbsp;مشهد </div>
+          <div class="media-body"> <span class="media-heading text-semibold"><?php echo $_SESSION['user_name'].' '.$_SESSION['user_family'] ?></span>
+            <div class="text-size-mini text-muted"> <i class="icon-pin text-size-small"></i> &nbsp;مکان شما </div>
           </div>
           <div class="media-right media-middle">
             <ul class="icons-list">

@@ -7,6 +7,8 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
 	header( "Location: $url" );
 	die();
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="rtl">

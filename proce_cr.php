@@ -61,14 +61,18 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
             {
                  $result7 = mysqli_query($mysqlicheck,"SELECT MAX(proc_id) FROM process "); 
                  $max2=mysqli_fetch_row($result7);
-                            
+                 
+                
+                     $sql_c1 = 'INSERT INTO `refer`(`re_pr_id`, `re_ur_id`, `re_vi`) VALUES ("'.$max2[0].'","'.$_SESSION['user_id'].'",1)';
+                     $result_c1 = $mysqlicheck->query($sql_c1);
+                
                  foreach ($_POST['refer'] as $s_Option)
                  {
 					 $sql2 = 'INSERT INTO `refer`(`re_pr_id`, `re_ur_id`, `re_vi`) VALUES ("'.$max2[0].'","'.$s_Option.'",1)';
                      $result2 = $mysqlicheck->query($sql2);
                  }
              }
-             if (!$result || !$result2)
+             if (!$result || !$result2 || !$result_c1)
              {
                  echo'<div class="alert alert-danger alert-styled-left alert-bordered">
 					<button data-dismiss="alert" class="close" type="button">
@@ -128,6 +132,7 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
 							$table = mysqli_query($mysqlicheck,"SELECT * FROM `user` ");
 							while($rows=mysqli_fetch_assoc($table))
 							{
+                                if ($rows['user_id'] != $_SESSION['user_id'])
 								echo '<option value="'.$rows['user_id'].'">'.$rows['user_family'].'</option>';
 							}
 							?>
