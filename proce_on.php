@@ -1,7 +1,7 @@
 <?php
 include("inc_db.php");
 
-if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
+if($_SESSION['login']!="admin" && $_SESSION['login']!="user" )
 {
 	$url = 'login.php';
 	header( "Location: $url" );

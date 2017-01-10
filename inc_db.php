@@ -1,8 +1,6 @@
 <?php
 error_reporting(0);
 session_start(); 
-$_SESSION['login']="user";
-$_SESSION['user_id']="14";
 include("jdf.php");
 include("inc_con.php");
 
@@ -29,7 +27,7 @@ $mysqlicheck->query("set time_zone = '+03:30'");
 
 
 
-$requst_from = substr($_SERVER['SCRIPT_FILENAME'],(strripos($_SERVER['SCRIPT_FILENAME'],'/')+1));
+/*$requst_from = substr($_SERVER['SCRIPT_FILENAME'],(strripos($_SERVER['SCRIPT_FILENAME'],'/')+1));
 
 $no_page = array('shop-customer-addresses.php','shop-customer-dashboard.php','shop-customer-profile.php','shop-order-history.php','shop-product-wishlist.php','shop-customer-e-a.php');
 
@@ -60,6 +58,6 @@ elseif($requst_from == 'shop-checkout-complete.php' && $_SESSION["check"] == "")
 	header( "Location: $url" );
 	die();
 }
-
+*/
 
 ?>

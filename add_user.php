@@ -1,7 +1,7 @@
 <?php
 include("inc_db.php");
 
-if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
+if($_SESSION['login']!="admin" && $_SESSION['login']!="user" )
 {
     $url = 'login.php';
     header( "Location: $url" );
@@ -121,6 +121,17 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
                 </div>
                 <div class="panel-body">
                   <div class="form-group">
+                    <label class="col-lg-3 control-label">جنسیت:</label>
+                    <div class="col-lg-9">
+                      <label class="radio-inline">
+                        <input type="radio" value="1" class="styled" name="gender" checked="checked">
+                        آقا </label>
+                      <label class="radio-inline">
+                        <input type="radio" value="2" class="styled" name="gender">
+                        خانوم </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
                     <label class="col-lg-3 control-label">نام:</label>
                     <div class="col-lg-9">
                       <input type="text" name="name" value="" class="form-control" placeholder="نام کاربر">
@@ -162,20 +173,9 @@ if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-lg-3 control-label">جنسیت:</label>
+                    <label class="col-lg-3 control-label">توضیحات:</label>
                     <div class="col-lg-9">
-                      <label class="radio-inline">
-                        <input type="radio" value="1" class="styled" name="gender" checked="checked">
-                        آقا </label>
-                      <label class="radio-inline">
-                        <input type="radio" value="2" class="styled" name="gender">
-                        خانوم </label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Your message:</label>
-                    <div class="col-lg-9">
-                      <textarea rows="5" cols="5" class="form-control" placeholder="Enter your message here"></textarea>
+                      <textarea rows="5" cols="5" class="form-control" placeholder="توضیحات خود را اینجا وارد نمائید "></textarea>
                     </div>
                   </div>
                   <div class="text-right">

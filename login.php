@@ -1,9 +1,7 @@
 <?php
 include("inc_db.php");
 
-	$_SESSION['login']="user";
-	header("Location: index.php");
-	die();
+	
 	
 if(get_safe_post($mysqlicheck,"ACT") == "logout")
 {
@@ -15,8 +13,18 @@ if(get_safe_post($mysqlicheck,"ACT") == "logout")
 if(get_safe_post($mysqlicheck,"ACT") == "check" && get_safe_post($mysqlicheck,"username") != "" && get_safe_post($mysqlicheck,"password") != "")
 {
 	/* Check For Username */
-	$sql="SELECT * FROM config WHERE un='" . get_safe_post($mysqlicheck,"username") . "' AND pw='" . md5(get_safe_post($mysqlicheck,"password") . "786.110" . get_safe_post($mysqlicheck,"username")) . "'";
-	// echo md5(get_safe_post($mysqlicheck,"password") . "786.110" . get_safe_post($mysqlicheck,"username"));
+	$result_u = mysqli_query($mysqlicheck,"SELECT * FROM `user` WHERE
+        `user_code` = '" . get_safe_post($mysqlicheck,"username") . "' AND
+        `user_pass` = '" . sha1(get_safe_post($mysqlicheck,"password")) . "'");
+
+	if ($result_u->num_rows > 0)
+	{
+        
+    }
+    else
+    {
+        
+    }
 	$result = $mysqlicheck->query($sql);
 	if (!$result) {
 	  printf("Query failed: %s\n");//, $mysqlicheck->error);
@@ -27,14 +35,14 @@ if(get_safe_post($mysqlicheck,"ACT") == "check" && get_safe_post($mysqlicheck,"u
 		session_destroy();
 		session_start();
 		session_regenerate_id();
-		$_SESSION['login']="user";
-		$_SESSION['username']=get_safe_post($mysqlicheck,"username");
 		while($row = $result->fetch_row())
 		{
-			$_SESSION['user_id']	=	$row[0] ;
-			$_SESSION['title']		=	$row[3] ;
-			$_SESSION['name']		=	$row[4] ;
+			$_SESSION['user_id']	=	$row['user_id'] ;
+			$_SESSION['title']		=	$row['user_tittle'] ;
+			$_SESSION['name']		=	$row['user_name'] ;
+			$_SESSION['family']		=	$row['user_family'] ;
 		}
+        print_r($_SESSION);
 		$result->close();
 		set_log("login","",$mysqlicheck);
 	}
@@ -87,10 +95,10 @@ if(get_safe_post($mysqlicheck,"ACT") == "check" && get_safe_post($mysqlicheck,"u
               <button type="submit" class="btn btn-primary btn-block">ورود <i class="icon-circle-left2 position-right"></i></button>
               <input type="hidden" name="ACT" value="check" />
             </div>
-            <div class="text-center"> <a href="login_password_recover.html">فراموش کرده اید?</a> </div>
+            <div class="text-center"> <a href="#">فراموش کرده اید?</a> </div>
           </div>
         </form>
-        <div class="footer text-muted"> &copy; 2015. <a href="#">Ali Gohari</a> </div>
+        <div class="footer text-muted"> &copy; 2017. <a href="#">Alireza safaiepoor & Ali Gohari</a> </div>
       </div>
     </div>
   </div>
