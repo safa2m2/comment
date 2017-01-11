@@ -49,7 +49,7 @@ if (isset($_POST['submit_o']) )
           if (!isset($_GET['out']))
           {
             ?>
-      <div class="page-header" style="text-align: center"><img src="12.png">  </div><?php }?>
+      <div class="page-header" style="text-align: center"><img src="12.png" width="90%">  </div><?php }?>
       <div class="content">
          <div class="panel-body">
            
