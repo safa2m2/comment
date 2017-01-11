@@ -27,37 +27,26 @@ $mysqlicheck->query("set time_zone = '+03:30'");
 
 
 
-/*$requst_from = substr($_SERVER['SCRIPT_FILENAME'],(strripos($_SERVER['SCRIPT_FILENAME'],'/')+1));
+$requst_from = substr($_SERVER['SCRIPT_FILENAME'],(strripos($_SERVER['SCRIPT_FILENAME'],'/')+1));
 
-$no_page = array('shop-customer-addresses.php','shop-customer-dashboard.php','shop-customer-profile.php','shop-order-history.php','shop-product-wishlist.php','shop-customer-e-a.php');
+$no_page = array('index.php', 'add_user.php', 'proce.php', 'proce_co.php', 'proce_cr.php', 'proce_on.php', 'rece_pas.php');
 
 if (in_array($requst_from, $no_page))
 {
-	if($_SESSION["login"]["type"]!="modir" && $_SESSION["login"]["type"]!= "user" )
+	if($_SESSION["login"]!="admin" && $_SESSION["login"]!= "user" )
 	{
 		$url = 'login.php';
 		header( "Location: $url" );
 		die();
 	}
 }
-elseif($requst_from == 'login.php' &&  $_SESSION["login"]["type"] == "user" && $_GET['o'] != 'o')
+elseif($requst_from == 'login.php' &&  ($_SESSION["login"]== "user" || $_SESSION["login"]=="admin"))
 {
 	$url = 'index.php';
 	header( "Location: $url" );
 	die();
 }
-elseif($requst_from == 'shop-checkout.php' && $_SESSION["cart_item"] == "")
-{
-	$url = 'shop-cart.php';
-	header( "Location: $url" );
-	die();
-}
-elseif($requst_from == 'shop-checkout-complete.php' && $_SESSION["check"] == "")
-{
-	$url = 'shop-cart.php';
-	header( "Location: $url" );
-	die();
-}
-*/
+
+
 
 ?>

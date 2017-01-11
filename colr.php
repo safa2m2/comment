@@ -4,7 +4,8 @@
     <div class="sidebar-user">
       <div class="category-content">
         <div class="media"> <a href="#" class="media-left"><img src="assets/images/image.png" class="img-circle img-sm" alt=""></a>
-          <div class="media-body"> <span class="media-heading text-semibold"><?php echo $_SESSION['user_name'].' '.$_SESSION['user_family'] ?></span>
+          <div class="media-body"> <span class="media-heading text-semibold"><?php echo
+            $_SESSION['user_name'].' '.$_SESSION['user_family']; ?></span>
             <div class="text-size-mini text-muted"> <i class="icon-pin text-size-small"></i> &nbsp;مکان شما </div>
           </div>
           <div class="media-right media-middle">
@@ -27,12 +28,14 @@
               <li><a href="proce_co.php">پروسه های اتمام یافته</a></li>
             </ul>
           </li>
+          <?php if ($_SESSION["login"]=="admin"){?>
           <li> <a href="#"><i class="icon-indent-decrease2"></i> <span>تنظیمات</span></a>
             <ul>
               <li><a href="add_user.php">ایجاد کاربر</a></li>
               <li><a href="rece_pas.php">بازیابی رمز عبور</a></li>
             </ul>
           </li>
+          <?php }?>
         </ul>
       </div>
     </div>

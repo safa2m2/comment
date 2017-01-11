@@ -1,12 +1,7 @@
 <?php
 include("inc_db.php");
 
-if($_SESSION['login']!="modir" && $_SESSION['login']!="user" )
-{
-	$url = 'login.php';
-	header( "Location: $url" );
-	die();
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="rtl">

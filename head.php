@@ -16,7 +16,7 @@ $time = jdate('H:i:s');
       <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-		<li class="dropdown dropdown-user"> <a class="dropdown-toggle" data-toggle="dropdown"> <img src="assets/images/image.png" alt=""> <span><?php echo $_SESSION['user_name'].' '.$_SESSION['user_family'] ?></span> <i class="caret"></i> </a>
+		<li class="dropdown dropdown-user"> <a class="dropdown-toggle" data-toggle="dropdown"> <img src="assets/images/image.png" alt=""> <span><?php echo $_SESSION['user_name'].' '.$_SESSION['user_family']; ?></span> <i class="caret"></i> </a>
         <ul class="dropdown-menu dropdown-menu-right">
           <li><a href="#"><i class="icon-user-plus"></i> پروفایل</a></li>
           <?php
@@ -27,7 +27,7 @@ $time = jdate('H:i:s');
           <li><a href="proce_on.php"><span class="badge badge-warning pull-right"><?php echo $rows_c2['COUNT(`re_vi`)'] ; ?></span> <i class="icon-comment-discussion"></i> پیام ها</a></li>
           <li class="divider"></li>
           <li><a href="#"><i class="icon-cog5"></i> تنظیمات</a></li>
-          <li><a href="#"><i class="icon-switch2"></i> خروج</a></li>
+          <li><a href="index.php?out"><i class="icon-switch2"></i> خروج</a></li>
         </ul>
       </li>
     </ul>
